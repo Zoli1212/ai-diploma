@@ -1,0 +1,5 @@
+package com.webler.dao;
+
+public class JobPostingDao {
+
+}

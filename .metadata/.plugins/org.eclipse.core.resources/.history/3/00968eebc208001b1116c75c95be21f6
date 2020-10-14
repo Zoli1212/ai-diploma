@@ -1,0 +1,83 @@
+package com.webler.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.webler.entity.JobPosting;
+
+public class JobPostingDao {
+	
+	private Connection conn;
+	
+	public JobPostingDao() {
+		
+		final String DRIVER = "com.mysql.jdbc.Driver";
+		final String URL = "jdbc:mysql://localhost:3306/jobportal3?useTimezone=true&serverTimezone=UTC&useSSL=false";
+		
+		final String USER = "student";
+		final String PASS = "student";
+		
+		
+		try {
+			Class.forName(DRIVER);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			this.conn = DriverManager.getConnection(URL, USER, PASS);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(conn==null) {
+			System.out.println("Connection failures");
+		}else {
+			System.out.println("Connection get ready");
+		}
+		
+		
+	}
+	
+	public JobPosting getJobPostingById(int id) {
+		
+		Statement st;
+		
+		try {
+			st = conn.createStatement();
+			
+			ResultSet rs = st.executeQuery("SELECT * FROM jobpostings WHERE id ="+id);
+			
+			if(rs.next()) {
+				JobPosting jobPostToReturn = new JobPosting();
+				
+				jobPostToReturn.setId(rs.getInt("id"));
+				jobPostToReturn.setJobName(rs.getString("jobName"));
+				jobPostToReturn.setPosterName(rs.getString("posterName"));
+				jobPostToReturn.setMessageBody(rs.getString("messageBody"));
+				jobPostToReturn.setContactPhone(rs.getString("contactPhone"));
+				jobPostToReturn.setJobPostingPassword(rs.getString("jobPostingPassword"));
+				
+				
+				System.out.println(jobPostToReturn.getJobName() +" "+ jobPostToReturn.getContactPhone());
+				
+				return jobPostToReturn;
+			}
+			
+			st.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+
+}

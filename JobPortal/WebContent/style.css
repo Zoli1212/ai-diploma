@@ -1,0 +1,182 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+  background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.8) 70%), url('bg.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+/*   height: 100vh; */
+}
+
+/* .parallax {
+  The image used
+  background-image: url("bg.jpg'");
+
+  Set a specific height
+  min-height: 500px; 
+
+  Create the parallax scrolling effect
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+.wrapper{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  padding: 0 20px;
+  max-height: 95vh;
+}
+
+/* .view-wrapper{
+  width: 100%;
+  padding: 0 20px;
+} */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 550px;
+  max-height: 90%;
+  margin: 0 auto;
+  background: rgba(0,0,0,0.8);
+  padding: 30px 30px 5px 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.cim {
+  widht: 100;
+  text-align: center;
+  margin-right: 4%;
+  padding: 0 0 20px 0;
+}
+
+.cim h1{
+/* 	color: #c5ecfd; */
+	color: brown; 
+}
+
+.input-fields{
+  flex-direction: column;
+  margin-right: 4%;
+}
+
+.input-fields,
+.msg{
+  width: 100%;
+}
+
+.input-fields .input,
+.msg textarea{
+  margin: 10px 0;
+  background: transparent;
+  border: 0px;
+  border-bottom: 2px solid #c5ecfd;
+  padding: 10px;
+  color: #c5ecfd;
+  width: 100%;
+}
+
+.msg textarea{
+  height: 212px;
+}
+
+.send{
+  widht: 100;
+  text-align: center;
+  margin-right: 4%;
+}
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #c5ecfd;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #c5ecfd;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #c5ecfd;
+}
+
+.kuldes{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 550px;
+  margin: 0 auto;
+  background: rgba(0,0,0,0.8);
+  padding: 5px 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.btn {
+    /*background: #39b7dd;  */
+    background: brown;
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 25%;
+    opacity: 0.5;
+}
+
+.btn:hover {
+	opacity: 1;
+}
+
+.success{
+  margin: 10px 0;
+  border: 0px;
+  border-bottom: 2px solid #c5ecfd;
+  padding: 10px;
+  color: #c5ecfd;
+  widht: 100;
+  text-align: center;
+  margin-right: 4%;
+}
+
+.link{
+  margin: 10px 0;
+  padding: 10px;
+  color: yellow;
+  widht: 100;
+  text-align: center;
+  margin-right: 4%;
+  widht: 100;
+  text-align: center;
+  margin-right: 4%;
+}
+a:visited{
+	color: brown;
+}
+
+@media screen and (max-width: 600px){
+  .contact-form{
+    flex-direction: column;
+  }
+  .msg textarea{
+    height: 80px;
+  }
+  .input-fields,
+  .msg{
+    width: 100%;
+  }
+}

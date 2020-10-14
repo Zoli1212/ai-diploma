@@ -1,0 +1,5 @@
+package com.webler.entity;
+
+public class JobPosting {
+
+}

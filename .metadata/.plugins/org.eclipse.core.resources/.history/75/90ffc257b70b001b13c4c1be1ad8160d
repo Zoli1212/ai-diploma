@@ -1,0 +1,17 @@
+package testgeom;
+
+import geom.Pont;
+
+public class App {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Pont p1 = new Pont(3.513, 1.57);
+		Pont p2 = new Pont(7, 3.2);
+		
+		System.out.printf("Az elsõ pont x : %.2f az y: %.2f", p1.x, p1.y);
+
+	}
+
+}

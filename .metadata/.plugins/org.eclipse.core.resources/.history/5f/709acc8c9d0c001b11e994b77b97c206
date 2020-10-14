@@ -1,0 +1,123 @@
+package com.webler.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.webler.entity.JobPosting;
+
+public class JobPostingDao {
+	
+	private Connection conn;
+	
+	public JobPostingDao() {
+		
+		final String DRIVER = "com.mysql.jdbc.Driver";
+		final String URL = "jdbc:mysql://localhost:3306/jobportal3?useTimezone=true&serverTimezone=UTC&useSSL=false";
+		
+		final String USER = "student";
+		final String PASS = "student";
+		
+		
+		try {
+			Class.forName(DRIVER);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			this.conn = DriverManager.getConnection(URL, USER, PASS);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(conn==null) {
+			System.out.println("Connection failures");
+		}else {
+			System.out.println("Connection get ready");
+		}
+		
+		
+	}
+	
+	public JobPosting getJobPostingById(int id) {
+		
+		Statement st;
+		
+		try {
+			st = conn.createStatement();
+			
+			ResultSet rs = st.executeQuery("SELECT * FROM jobpostings WHERE id ="+id);
+			
+			if(rs.next()) {
+				JobPosting jobPostToReturn = new JobPosting();
+				
+				jobPostToReturn.setId(rs.getInt("id"));
+				jobPostToReturn.setJobName(rs.getString("jobName"));
+				jobPostToReturn.setPosterName(rs.getString("posterName"));
+				jobPostToReturn.setMessageBody(rs.getString("messageBody"));
+				jobPostToReturn.setContactPhone(rs.getString("contactPhone"));
+				jobPostToReturn.setJobPostingPassword(rs.getString("jobPostingPassword"));
+				
+				
+				
+				
+				return jobPostToReturn;
+			}
+			
+			st.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+	
+	public void insertJobPosting(JobPosting posting) {
+		String sep = "','";
+		
+		try {
+			Statement st = conn.createStatement();
+			
+			String sqlquery = "INSERT INTO jobpostings(messagebody, jobname, postername, contactphone, jobpostingpassword) VALUES('"
+					+ posting.getMessageBody() + sep + posting.getJobName() + sep
+					+ posting.getContactPhone() + sep + posting.getJobPostingPassword() +"')";
+			System.out.println(sqlquery);
+			st.executeUpdate(sqlquery);
+			st.close();
+			
+					
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void removeJobPosting(int JobPostingId) {
+		Statement st;
+		
+		try {
+			st = conn.createStatement();
+			st.executeUpdate("DELETE FROM jobpostings WHERE id ="+JobPostingId);
+			st.close();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public List<JobPosting> getAllJobPostings()
+
+}

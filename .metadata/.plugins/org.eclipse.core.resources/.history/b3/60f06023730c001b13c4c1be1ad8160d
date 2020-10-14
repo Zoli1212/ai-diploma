@@ -1,0 +1,21 @@
+package testgeom;
+
+import java.util.Locale;
+
+import geom.Pont;
+
+public class App {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Pont p1 = new Pont(3.513, 1.57);
+		Pont p2 = new Pont(7, 3.2);
+		
+		//p1.x = 17.3;
+		
+		System.out.printf(Locale.US, "Az elsõ pont x : %.1f az y: %.1f", p1.getX(), p1.getY());
+
+	}
+
+}
